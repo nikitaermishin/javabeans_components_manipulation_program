@@ -27,7 +27,7 @@ JARFILE= ..\jars\quote.jar
 all: $(JARFILE)
 
 run: all
-	java sunw.demo.quote.QuoteServerApp
+	java  sunw.demo.quote.QuoteServerApp
 
 # Create a JAR file with a suitable manifest.
 
@@ -41,7 +41,7 @@ Java-Bean: True
 
 {sunw\demo\quote}.java{sunw\demo\quote}.class :
 	set CLASSPATH=.
-	javac $<
+	javac --add-exports java.rmi/sun.rmi.registry=ALL-UNNAMED $<
 
 # Create RMI stub .class files
 sunw\demo\quote\QuoteServerImpl_Skel.class \

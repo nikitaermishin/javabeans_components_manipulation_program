@@ -40,7 +40,7 @@ $(JARFILE): $(CLASSFILES) $(DATAFILES)
 # Rule for compiling a normal .java file
 %.class: %.java
 	export CLASSPATH; CLASSPATH=. ; \
-	javac $<
+	javac --add-exports java.rmi/sun.rmi.registry=ALL-UNNAMED $<
 
 # Create RMI stub .class files
 sunw/demo/quote/QuoteServerImpl_Skel.class \
