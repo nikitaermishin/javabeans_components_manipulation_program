@@ -4,9 +4,12 @@ package sunw.beanbox;
  * Class needed to support instantiation of Applets in the generated Applets
  */
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.*;
 import java.applet.*;
 import java.awt.*;
+import java.util.Iterator;
 
 public class AppletSupport {
 
@@ -132,6 +135,20 @@ class BeanBoxAppletContext implements AppletContext {
     public void showStatus(String status) {
 	// We do nothing.
     }
+
+	public Iterator getStreamKeys() {
+		// We do nothing.
+		return null;
+	}
+
+	public InputStream getStream(String key) {
+		// We do nothing.
+		return null;
+	}
+
+	public void setStream(String key, InputStream stream) throws IOException {
+		// We do nothing.
+	}
 }
 
 

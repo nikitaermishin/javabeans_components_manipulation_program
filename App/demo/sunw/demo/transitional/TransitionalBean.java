@@ -10,7 +10,7 @@ package sunw.demo.transitional;
 
 import java.awt.*;
 
-public class TransitionalBean extends Canvas implements sunw.io.Serializable {
+public class TransitionalBean extends Canvas implements java.io.Serializable {
 
     public TransitionalBean() {
 	resize(60,40);

@@ -1,0 +1,19 @@
+<component name="libraryTable">
+  <library name="jars">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/App/jars/jelly.jar!/" />
+      <root url="jar://$PROJECT_DIR$/App/jars/molecule.jar!/" />
+      <root url="jar://$PROJECT_DIR$/App/jars/sort.jar!/" />
+      <root url="jar://$PROJECT_DIR$/App/jars/transitional.jar!/" />
+      <root url="jar://$PROJECT_DIR$/App/jars/test.jar!/" />
+      <root url="jar://$PROJECT_DIR$/App/jars/buttons.jar!/" />
+      <root url="jar://$PROJECT_DIR$/App/jars/juggler.jar!/" />
+      <root url="jar://$PROJECT_DIR$/App/jars/quote.jar!/" />
+      <root url="jar://$PROJECT_DIR$/App/jars/misc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/App/jars/select.jar!/" />
+      <root url="jar://$PROJECT_DIR$/App/jars/eventmonitor.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -6,7 +6,7 @@ package sunw.demo.transitional;
  * OurButton gets pushed.
  */
 
-public class ButtonPushEvent extends sunw.util.EventObject {
+public class ButtonPushEvent extends java.util.EventObject {
     public ButtonPushEvent(java.awt.Component source) {
         super(source);
     }

@@ -5,7 +5,7 @@ package sunw.demo.transitional;
  * an OurButton gets pushed.
  */
 
-public interface ButtonPushListener extends sunw.util.EventListener {
+public interface ButtonPushListener extends java.util.EventListener {
 
     public void push(ButtonPushEvent e);
 

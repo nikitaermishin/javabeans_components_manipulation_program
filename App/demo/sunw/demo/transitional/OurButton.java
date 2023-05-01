@@ -10,7 +10,7 @@ import java.util.Vector;
 import java.awt.*;
 
 public class OurButton extends java.awt.Button implements
-                                        sunw.io.Serializable {
+                                        java.io.Serializable {
     private boolean dbg;
     private Vector listeners = new Vector();
 

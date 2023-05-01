@@ -234,9 +234,9 @@ public class Wrapper extends Panel implements Serializable,
      */
 
     void removeListeners() {
-	Enumeration enum = eventTargets.elements();
-	while (enum.hasMoreElements()) {
-	    WrapperEventTarget et = (WrapperEventTarget)enum.nextElement();
+	Enumeration e = eventTargets.elements();
+	while (e.hasMoreElements()) {
+	    WrapperEventTarget et = (WrapperEventTarget)e.nextElement();
 	    EventSetDescriptor esd = (EventSetDescriptor) esdMap.get(et.eventSetName);
 	    Method remover = esd.getRemoveListenerMethod();
 	    try {
@@ -262,9 +262,9 @@ public class Wrapper extends Panel implements Serializable,
       * (Re)-attach any event listeners.
       */
     void attachListeners() {   
-	Enumeration enum = eventTargets.elements();
-	while (enum.hasMoreElements()) {
-	    WrapperEventTarget et = (WrapperEventTarget)enum.nextElement();
+	Enumeration e = eventTargets.elements();
+	while (e.hasMoreElements()) {
+	    WrapperEventTarget et = (WrapperEventTarget)e.nextElement();
 	    EventSetDescriptor esd = (EventSetDescriptor) esdMap.get(et.eventSetName);
 	    Method adder = esd.getAddListenerMethod();
 	    try {
