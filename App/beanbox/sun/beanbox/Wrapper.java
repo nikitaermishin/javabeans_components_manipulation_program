@@ -25,8 +25,9 @@ import java.lang.reflect.Method;
 import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Vector;
+import javax.swing.JPanel;
 
-public class Wrapper extends Panel implements Serializable,
+public class Wrapper extends JPanel implements Serializable,
         MouseListener, MouseMotionListener {
 
     static final long serialVersionUID = 1144602051002987355L;
@@ -726,7 +727,7 @@ public class Wrapper extends Panel implements Serializable,
             return (BeanBox) child;
         }
         // Otherwise we're hopelessly confused.
-        System.err.println("Warning: Can't find BeanBox from wrapper");
+//        System.err.println("Warning: Can't find BeanBox from wrapper"); TODO
         // System.err.println("    this = " + this);
         // System.err.println("    child = " + child);
         // System.err.println("    parent = " + getParent());

@@ -17,8 +17,10 @@ import java.beans.Beans;
 import java.beans.Customizer;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import javax.swing.JFrame;
+import javax.swing.JMenuBar;
 
-public class BeanBoxFrame extends Frame implements LayoutManager, Runnable,
+public class BeanBoxFrame extends JFrame implements LayoutManager, Runnable,
         ActionListener, PropertyChangeListener {
 
     private static String tmpDir = "tmp";
@@ -58,7 +60,8 @@ public class BeanBoxFrame extends Frame implements LayoutManager, Runnable,
 
         setLayout(null);
         setBackground(Color.lightGray);
-        setMenuBar(new MenuBar());
+        setJMenuBar(new JMenuBar());
+        //MenuBar(new MenuBar());
 
         // Timing note: the setFont causes AWT to initialiie itself,
         // so a large chunk of time happens here.
@@ -373,7 +376,7 @@ public class BeanBoxFrame extends Frame implements LayoutManager, Runnable,
         for (Component c = target.getChild(); c != null; c = c.getParent()) {
             if (c instanceof BeanBox) {
                 BeanBox hdr = (BeanBox) c;
-                hdr.updateMenuBar(getMenuBar());
+                hdr.updateMenuBar(getJMenuBar());
                 break;
             }
         }
