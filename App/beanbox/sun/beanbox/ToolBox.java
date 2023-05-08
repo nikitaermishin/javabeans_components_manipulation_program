@@ -22,7 +22,7 @@ class ToolBox extends JFrame {
     ToolBox(int x, int y) {
         super("ToolBox");
 
-        setLayout(null);
+        setLayout(new BorderLayout());
         setBackground(Color.lightGray);
         setFont(new Font("Dialog", Font.PLAIN, 10));
 
@@ -62,16 +62,15 @@ class ToolBox extends JFrame {
 
 class ToolBoxScrollPane extends JScrollPane {
     ToolBoxScrollPane(JFrame frame) {
-        super();
+        super(null, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
+        tools = new ToolBoxPanel(frame);
+        setViewportView(tools);
 		setSize(145,300);
 		setBackground(Color.lightGray);
 		setLocation(0, 0);
 
-        tools = new ToolBoxPanel(frame);
-		setViewportView(tools);
         getVerticalScrollBar().setUnitIncrement(20);
-		getHorizontalScrollBar().setEnabled(false);
     }
 
     Vector getLoadedJarInfo() {
@@ -95,9 +94,9 @@ class ToolBoxPanel extends JPanel implements Runnable, MouseListener {
         this.frame = frame;
 
 		setLocation(0, 0);
-        setLayout(null);
+        setLayout(new GridLayout(0, 1));
 		setBackground(Color.lightGray);
-//        setFont(new Font("Dialog", Font.PLAIN, 10));
+        setFont(new Font("Dialog", Font.PLAIN, 10));
         addMouseListener(this);
 
         if (!BeanBoxFrame.getQuickStart()) {

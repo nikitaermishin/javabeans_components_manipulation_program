@@ -34,7 +34,7 @@ import java.io.*;
 import java.lang.reflect.Method;
 import java.util.*;
 
-public class BeanBox extends Panel implements Serializable, Runnable,
+public class BeanBox extends JPanel implements Serializable, Runnable,
         MouseListener, MouseMotionListener, BeanContextProxy {
 
     static final long serialVersionUID = -1930952830824256715L;
@@ -1118,12 +1118,9 @@ public class BeanBox extends Panel implements Serializable, Runnable,
                 File cwd = new File(System.getProperty("user.dir"));
                 File pwd = new File(cwd.getParent());
                 File readme = new File(pwd, "README.html");
-                String mess = "<html><center>Use a web browser to view the online documentation starting at<br>"
-                        + "file://" + readme + "<center><html>";
-                JDialog dialog = new JDialog(getFrame(), "Documentation");
-                dialog.setMinimumSize(new Dimension(700, 100));
-                dialog.add(new JLabel(mess, JLabel.CENTER), BorderLayout.CENTER);
-                dialog.setVisible(true);
+                String mess = "Use a web browser to view the online documentation starting at\n"
+                        + "file://" + readme;
+                new MessageDialog(getFrame(), "Documentation", mess);
             }
 
         } else if (parent.getText().equals("Services")) {

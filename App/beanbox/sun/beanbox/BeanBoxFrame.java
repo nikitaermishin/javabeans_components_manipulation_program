@@ -94,12 +94,12 @@ public class BeanBoxFrame extends JFrame implements LayoutManager, Runnable,
 
         setBounds(170, 20, 400, 550);
         new WindowCloser(this, true);
-        show();
+        setVisible(true);
 
         propertySheet = new PropertySheet(topWrapper, 575, 20);
         new WindowCloser(propertySheet, true);
 
-        toolBox.show();
+        toolBox.setVisible(true);
 
         // Create a thread to handle focus changes.
         focusThread = new Thread(this);
@@ -122,11 +122,11 @@ public class BeanBoxFrame extends JFrame implements LayoutManager, Runnable,
         if (argv.length > 1) {
             throw new Error("Bad args");
         }
-        for (int i = 0; i < argv.length; i++) {
-            if (argv[i].equals("-version")) {
+        for (String s : argv) {
+            if (s.equals("-version")) {
                 System.out.println("BeanBox version: " + versionID);
                 System.exit(0);
-            } else if (argv[i].equals("-quick")) {
+            } else if (s.equals("-quick")) {
                 System.err.println("quick starting...");
                 quickStart = true;
             } else { // undocumented?
@@ -330,7 +330,7 @@ public class BeanBoxFrame extends JFrame implements LayoutManager, Runnable,
 
     public void propertyChange(PropertyChangeEvent evt) {
         if (evt.getPropertyName().equals("designMode")) {
-            setDesignMode((boolean) ((Boolean) evt.getNewValue()).booleanValue());
+            setDesignMode((Boolean) evt.getNewValue());
         }
     }
 

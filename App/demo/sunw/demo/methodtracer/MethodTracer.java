@@ -22,6 +22,7 @@
 
 package sunw.demo.methodtracer;
 
+import javax.swing.*;
 import java.awt.*;
 import java.io.*;
 import java.beans.*;
@@ -39,10 +40,10 @@ import java.beans.DesignMode.*;
  *
  */
 
-public final class MethodTracer extends Frame 
+public final class MethodTracer extends JFrame
 		   implements PropertyChangeListener, DesignMode { 
 
-    private TextArea ta;
+    private JTextArea ta;
     protected boolean useGui;
 
     /** 
@@ -52,8 +53,7 @@ public final class MethodTracer extends Frame
     public MethodTracer() {
         super( "Method Tracer");
         setBackground(Color.lightGray);
-        ta = new TextArea( "Method tracing service started.\n", 7, 50,
-                           TextArea.SCROLLBARS_BOTH);
+        ta = new JTextArea( "Method tracing service started.\n", 7, 50);
         add(ta);
         ta.setBackground(Color.lightGray);
         ta.setEditable(false);
