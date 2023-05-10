@@ -69,7 +69,9 @@ public class BeanBoxFrame extends JFrame implements LayoutManager, Runnable,
 
         Timer tim = new Timer();
         toolBox = new ToolBox(20, 20);
-        new WindowCloser(toolBox, true);
+        add(toolBox);
+        toolBox.setVisible(true);
+        toolBox.toFront();
 
         if (showTimes()) {
             System.err.println("new Toolbox => " + tim.elapsed());
@@ -92,14 +94,16 @@ public class BeanBoxFrame extends JFrame implements LayoutManager, Runnable,
         topBox.setSize(100, 100);
         setLayout(this);
 
-        setBounds(170, 20, 400, 550);
+        setBounds(170, 20, 1400, 850);
         new WindowCloser(this, true);
         setVisible(true);
 
         propertySheet = new PropertySheet(topWrapper, 575, 20);
         new WindowCloser(propertySheet, true);
+        //add(propertySheet);
+        //propertySheet.setVisible(true);
+        //propertySheet.toFront();
 
-        toolBox.setVisible(true);
 
         // Create a thread to handle focus changes.
         focusThread = new Thread(this);

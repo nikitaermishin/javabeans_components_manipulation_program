@@ -16,11 +16,12 @@ import java.util.Vector;
 // We currently keep all the contents of the ToolBox in a separate
 // ToolBoxPanel object, to workaround win32 bug #4028421   KGH 1/28/97
 
-class ToolBox extends JFrame {
+class ToolBox extends JInternalFrame {
     private ToolBoxScrollPane pane;
 
     ToolBox(int x, int y) {
-        super("ToolBox");
+        super("ToolBox", true, false, true, true);
+
 
         setLayout(new BorderLayout());
         setBackground(Color.lightGray);
@@ -60,7 +61,7 @@ class ToolBox extends JFrame {
 }
 
 class ToolBoxScrollPane extends JScrollPane {
-    ToolBoxScrollPane(JFrame frame) {
+    ToolBoxScrollPane(JInternalFrame frame) {
         super(null, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         tools = new ToolBoxPanel(frame);
@@ -89,7 +90,7 @@ class ToolBoxScrollPane extends JScrollPane {
 
 class ToolBoxPanel extends JPanel implements Runnable, MouseListener {
 
-    ToolBoxPanel(JFrame frame) {
+    ToolBoxPanel(JInternalFrame frame) {
         this.frame = frame;
 
 		setLocation(0, 0);
@@ -383,7 +384,7 @@ class ToolBoxPanel extends JPanel implements Runnable, MouseListener {
         System.err.println(message);
         ex.printStackTrace();
         // Popup an ErrorDialog with the given error message.
-        new ErrorDialog(frame, mess);
+        // TODO: new ErrorDialog(frame, mess);
 
     }
 
@@ -391,7 +392,7 @@ class ToolBoxPanel extends JPanel implements Runnable, MouseListener {
         String mess = message;
         System.err.println(message);
         // Popup an ErrorDialog with the given error message.
-        new ErrorDialog(frame, mess);
+        // TODO: new ErrorDialog(frame, mess);
 
     }
 
@@ -414,7 +415,7 @@ class ToolBoxPanel extends JPanel implements Runnable, MouseListener {
     private String pendingBeanLabel;
     private String pendingBeanName;
     private boolean pendingFromPrototypeInfo;
-    private JFrame frame;
+    private JInternalFrame frame;
 
     private static Cursor crosshairCursor = Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR);
     private static Cursor defaultCursor = Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
