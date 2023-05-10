@@ -1,4 +1,3 @@
-
 /**
  * Pop up a (modal) Message dialog and wait for a user to press "continue".
  */
@@ -15,8 +14,7 @@ public class MessageDialog extends JDialog implements ActionListener {
         this(frame, title, message, false);
     }
 
-    public MessageDialog(JFrame frame, String title,
-                         String message, boolean leftIndented) {
+    public MessageDialog(JFrame frame, String title, String message, boolean leftIndented) {
         super(frame, title, true);
         new WindowCloser(this);
 

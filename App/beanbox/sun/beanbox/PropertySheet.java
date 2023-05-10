@@ -8,7 +8,7 @@ import java.awt.*;
 import java.util.Hashtable;
 import java.util.Vector;
 
-public class PropertySheet extends Frame {
+public class PropertySheet extends JFrame {
     private PropertySheetPanel panel;
     private boolean started;
 
@@ -52,20 +52,21 @@ public class PropertySheet extends Frame {
     }
 }
 
-class PropertySheetPanel extends Panel {
+class PropertySheetPanel extends JPanel {
 
     PropertySheetPanel(PropertySheet frame) {
         this.frame = frame;
+        setBackground(Color.lightGray);
         setLayout(null);
     }
 
     synchronized void setTarget(Wrapper targ) {
 
-        frame.removeAll();
+        frame.getContentPane().removeAll();
 
         removeAll();
 
-        // We make the panel invisivle during the reconfiguration
+        // We make the panel invisible during the reconfiguration
         // to try to reduce screen flicker.
 
         // As a workaround for #4056424, we avoid maling the panel
@@ -208,6 +209,8 @@ class PropertySheetPanel extends Panel {
             frameHeight = maxHeight;
         }
 
+        System.out.println(needPane);
+
         if (needPane) {
             // Put us in a ScrollPane.
 
@@ -227,15 +230,20 @@ class PropertySheetPanel extends Panel {
                 frameHeight = maxHeight;
             }
 
-            ScrollPane pane = new ScrollPane(ScrollPane.SCROLLBARS_ALWAYS);
+            JScrollPane pane = new JScrollPane(this, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
             pane.setBounds(ins.left, ins.top,
                     frameWidth - (ins.left + ins.right),
                     frameHeight - (ins.top + ins.bottom));
+            pane.setPreferredSize(new Dimension(frameWidth - (ins.left + ins.right),
+                    frameHeight - (ins.top + ins.bottom)));
+            pane.setViewportView(this);
+//            pane.setLocation(ins.left, ins.top);
+//            pane.setSize(new Dimension(100, 300));
 
             frame.setSize(frameWidth, frameHeight);
-            pane.add(this);
             frame.add(pane);
 
+//            pane.revalidate();
             pane.doLayout();
 
         } else {
@@ -433,7 +441,7 @@ class PropertySheetPanel extends Panel {
     }
 
     private void warning(String s) {
-        new ErrorDialog(frame, "Warning: " + s);
+        //new ErrorDialog(frame, "Warning: " + s);
     }
 
     //----------------------------------------------------------------------
@@ -444,7 +452,7 @@ class PropertySheetPanel extends Panel {
         System.err.println(message);
         th.printStackTrace();
         // Popup an ErrorDialog with the given error message.
-        new ErrorDialog(frame, mess);
+        //new ErrorDialog(frame, mess);
 
     }
 

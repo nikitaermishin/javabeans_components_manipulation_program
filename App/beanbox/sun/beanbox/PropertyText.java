@@ -3,6 +3,7 @@
 
 package sun.beanbox;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.beans.*;
@@ -10,24 +11,24 @@ import java.beans.*;
 class PropertyText extends TextField implements KeyListener, FocusListener {
 
     PropertyText(PropertyEditor pe) {
-	super(pe.getAsText());
-	editor = pe;
-	addKeyListener(this);
-	addFocusListener(this);
+        super(pe.getAsText());
+        editor = pe;
+        addKeyListener(this);
+        addFocusListener(this);
     }
 
     public void repaint() {
-	setText(editor.getAsText());
+        setText(editor.getAsText());
     }
 
     protected void updateEditor() {
-	try {
-	    editor.setAsText(getText());
-	} catch (IllegalArgumentException ex) {
-	    // Quietly ignore.
-	}
+        try {
+            editor.setAsText(getText());
+        } catch (IllegalArgumentException ex) {
+            // Quietly ignore.
+        }
     }
-    
+
     //----------------------------------------------------------------------
     // Focus listener methods.
 
@@ -35,16 +36,16 @@ class PropertyText extends TextField implements KeyListener, FocusListener {
     }
 
     public void focusLost(FocusEvent e) {
-    	updateEditor();
+        updateEditor();
     }
-    
+
     //----------------------------------------------------------------------
     // Keyboard listener methods.
 
     public void keyReleased(KeyEvent e) {
- 	if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-	    updateEditor();
-	}
+        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+            updateEditor();
+        }
     }
 
     public void keyPressed(KeyEvent e) {

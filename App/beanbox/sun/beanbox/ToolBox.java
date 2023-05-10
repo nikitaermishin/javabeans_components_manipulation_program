@@ -28,7 +28,6 @@ class ToolBox extends JFrame {
 
         pane = new ToolBoxScrollPane(this);
         add(pane);
-        pane.setLocation(0, 0);
 
 		setLocation(x, y);
 		setSize(pane.getPreferredSize());
@@ -415,7 +414,7 @@ class ToolBoxPanel extends JPanel implements Runnable, MouseListener {
     private String pendingBeanLabel;
     private String pendingBeanName;
     private boolean pendingFromPrototypeInfo;
-    private Frame frame;
+    private JFrame frame;
 
     private static Cursor crosshairCursor = Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR);
     private static Cursor defaultCursor = Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);

@@ -7,14 +7,14 @@ import java.io.*;
  */
 
 public class IndentedStream {
-    
+
     public IndentedStream(PrintWriter s, String space) {
-	currentStream = s;
-	indentSpace = space;
+        currentStream = s;
+        indentSpace = space;
     }
 
     public IndentedStream(PrintWriter s) {
-	this(s, "    ");
+        this(s, "    ");
     }
 
     public void close() {
@@ -22,53 +22,53 @@ public class IndentedStream {
     }
 
     public void o() {
-	indentLevel--;
+        indentLevel--;
     }
 
     public void i() {
-    	indentLevel++;
+        indentLevel++;
     }
 
     public void ip(String s) {
-    	i();
-	pp(s);
+        i();
+        pp(s);
     }
 
     public void ip() {
-    	i();
-	pp();
+        i();
+        pp();
     }
 
     public void op(String s) {
-    	o();
-	pp(s);
+        o();
+        pp(s);
     }
 
     public void op() {
-    	o();
-	pp();
+        o();
+        pp();
     }
 
     public void pp() {
-	currentStream.println(); 
+        currentStream.println();
     }
 
     public void pp(String s) {
-	for (int i=0; i<indentLevel; i++) {
-	    currentStream.print(indentSpace);
-	}
-	currentStream.println(s);
+        for (int i = 0; i < indentLevel; i++) {
+            currentStream.print(indentSpace);
+        }
+        currentStream.println(s);
     }
 
     public void pp0(String s) {
-	for (int i=0; i<indentLevel; i++) {
-	    currentStream.print(indentSpace);
-	}
-	currentStream.print(s);
+        for (int i = 0; i < indentLevel; i++) {
+            currentStream.print(indentSpace);
+        }
+        currentStream.print(s);
     }
 
     public void pn(String s) {
-    	currentStream.println(s);
+        currentStream.println(s);
     }
 
     public void pn0(String s) {
@@ -77,7 +77,7 @@ public class IndentedStream {
 
     // Private fields for indented streams...
 
-    private int indentLevel;	// indentation level
+    private int indentLevel;    // indentation level
     private String indentSpace; // space
     private PrintWriter currentStream; // for generating code
 }

@@ -27,8 +27,7 @@ import java.util.Hashtable;
 import java.util.Vector;
 import javax.swing.JPanel;
 
-public class Wrapper extends JPanel implements Serializable,
-        MouseListener, MouseMotionListener {
+public class Wrapper extends JPanel implements Serializable, MouseListener, MouseMotionListener {
 
     static final long serialVersionUID = 1144602051002987355L;
     private final static int borderWidth = 5;
@@ -208,28 +207,20 @@ public class Wrapper extends JPanel implements Serializable,
     private Vector getWPEIfromWET(Vector wets) {
         Vector back = new Vector();
         // we only care about properties, not method hookups
-        for (Enumeration e = wets.elements();
-             e.hasMoreElements(); ) {
+        for (Enumeration e = wets.elements(); e.hasMoreElements(); ) {
             WrapperEventTarget wet = (WrapperEventTarget) e.nextElement();
             if (wet.targetListener instanceof PropertyHookup) {
 
                 PropertyHookup h = (PropertyHookup) wet.targetListener;
                 Hashtable table = h.getTargetsByProperty();
-                for (Enumeration keys = table.keys();
-                     keys.hasMoreElements(); ) {
+                for (Enumeration keys = table.keys(); keys.hasMoreElements(); ) {
                     String propertyName = (String) keys.nextElement();
                     Vector targets = (Vector) table.get(propertyName);
 
-                    for (Enumeration ee = targets.elements();
-                         ee.hasMoreElements(); ) {
+                    for (Enumeration ee = targets.elements(); ee.hasMoreElements(); ) {
                         Object t = ee.nextElement();
 
-                        back.addElement(
-                                new
-                                        WrapperPropertyEventInfo(
-                                        h.getTargetObject(t),
-                                        propertyName,
-                                        h.getSetterMethod(t)));
+                        back.addElement(new WrapperPropertyEventInfo(h.getTargetObject(t), propertyName, h.getSetterMethod(t)));
                     }
                 }
             }
@@ -241,8 +232,7 @@ public class Wrapper extends JPanel implements Serializable,
      * Serialization methods
      */
 
-    private void readObject(ObjectInputStream s)
-            throws ClassNotFoundException, IOException {
+    private void readObject(ObjectInputStream s) throws ClassNotFoundException, IOException {
         s.defaultReadObject();
         initialize();
     }
@@ -252,8 +242,7 @@ public class Wrapper extends JPanel implements Serializable,
     // Mouse listener methods for target bean.
     // We also report all mouse events to our containing BeanBox.
 
-    synchronized void addPropertychangeListener(String propertyName,
-                                                PropertyChangeListener listener) {
+    synchronized void addPropertychangeListener(String propertyName, PropertyChangeListener listener) {
     }
 
     /**
@@ -295,9 +284,7 @@ public class Wrapper extends JPanel implements Serializable,
             if (et.targetBean == null) {
                 // this is a property bound hookup
             } else {
-                back[i] = new WrapperEventInfo(et.targetBean,
-                        et.targetListener.getClass().getName(),
-                        et.eventSetName);
+                back[i] = new WrapperEventInfo(et.targetBean, et.targetListener.getClass().getName(), et.eventSetName);
                 i += 1;
             }
         }
@@ -310,16 +297,12 @@ public class Wrapper extends JPanel implements Serializable,
     }
 
     // Add a (set of) PropertyHookup
-    synchronized void addPropertyTarget(String propertyName,
-                                        Object targetObject, Method setter) {
-        propertyTargets.addElement(
-                new WrapperPropertyEventInfo(targetObject,
-                        propertyName, setter));
+    synchronized void addPropertyTarget(String propertyName, Object targetObject, Method setter) {
+        propertyTargets.addElement(new WrapperPropertyEventInfo(targetObject, propertyName, setter));
     }
 
     // Add a hookup.  All property bound hookups are represented by (at most) one hookup
-    synchronized void addEventTarget(String eventSetName,
-                                     Wrapper targetWrapper, Object listener) {
+    synchronized void addEventTarget(String eventSetName, Wrapper targetWrapper, Object listener) {
         WrapperEventTarget et = new WrapperEventTarget();
         et.eventSetName = eventSetName;
         if (targetWrapper != null) {
@@ -370,13 +353,11 @@ public class Wrapper extends JPanel implements Serializable,
                 Object args[] = {et.targetListener};
                 remover.invoke(bean, args);
             } catch (InvocationTargetException ex) {
-                System.err.println("Wrapper: removing event listener for "
-                        + et.eventSetName + " failed:");
+                System.err.println("Wrapper: removing event listener for " + et.eventSetName + " failed:");
                 System.err.println("    " + ex.getTargetException());
                 ex.getTargetException().printStackTrace();
             } catch (Exception ex) {
-                System.err.println("Wrapper: removing event listener for "
-                        + et.eventSetName + " failed:");
+                System.err.println("Wrapper: removing event listener for " + et.eventSetName + " failed:");
                 System.err.println("    " + ex);
                 ex.printStackTrace();
             }
@@ -398,14 +379,12 @@ public class Wrapper extends JPanel implements Serializable,
                 Object args[] = {et.targetListener};
                 adder.invoke(bean, args);
             } catch (InvocationTargetException ex) {
-                System.err.println("Wrapper: adding event listener for "
-                        + et.eventSetName + " failed:");
+                System.err.println("Wrapper: adding event listener for " + et.eventSetName + " failed:");
                 System.err.println("    bean = " + bean);
                 System.err.println("    " + ex.getTargetException());
                 ex.getTargetException().printStackTrace();
             } catch (Exception ex) {
-                System.err.println("Wrapper: adding event listener for "
-                        + et.eventSetName + " failed:");
+                System.err.println("Wrapper: adding event listener for " + et.eventSetName + " failed:");
                 System.err.println("    bean = " + bean);
                 System.err.println("    " + ex);
                 ex.printStackTrace();
@@ -502,8 +481,7 @@ public class Wrapper extends JPanel implements Serializable,
         // Has the child gotten bigger?  If so, expand to fit.
         Dimension d = getSize();
         Dimension cd = child.getMinimumSize();
-        if (cd.width > (d.width - (2 * borderWidth)) ||
-                cd.height > (d.height - (2 * borderWidth))) {
+        if (cd.width > (d.width - (2 * borderWidth)) || cd.height > (d.height - (2 * borderWidth))) {
             int width = d.width;
             if (cd.width > (d.width - (2 * borderWidth))) {
                 width = cd.width + (2 * borderWidth);
@@ -566,8 +544,7 @@ public class Wrapper extends JPanel implements Serializable,
         // If we're the top level wrapper, there is no dickering.
         if (getParent() != null && getParent() instanceof Frame) {
             super.setBounds(x, y, width, height);
-            child.setBounds(borderWidth, borderWidth,
-                    width - (2 * borderWidth), height - (2 * borderWidth));
+            child.setBounds(borderWidth, borderWidth, width - (2 * borderWidth), height - (2 * borderWidth));
             child.validate();
             return;
         }
@@ -665,25 +642,20 @@ public class Wrapper extends JPanel implements Serializable,
         int highX = getSize().width - borderWidth;
         int lowY = borderWidth;
         int highY = getSize().height - borderWidth;
-        boolean onTheBorder = ((evt.getSource() == this) &&
-                (x < lowX || x > highX || y < lowY || y > highY));
+        boolean onTheBorder = ((evt.getSource() == this) && (x < lowX || x > highX || y < lowY || y > highY));
 
         Cursor newCursor = defaultCursor;
 
         if (onTheBorder) {
             if (id == MouseEvent.MOUSE_PRESSED) {
                 // Check if we need to resize or move.
-                if (cursor == nwResizeCursor ||
-                        cursor == swResizeCursor ||
-                        cursor == neResizeCursor ||
-                        cursor == seResizeCursor) {
+                if (cursor == nwResizeCursor || cursor == swResizeCursor || cursor == neResizeCursor || cursor == seResizeCursor) {
                     getBeanBox().startResize(this, x, y, cursor);
                 } else if (cursor == moveCursor) {
                     getBeanBox().startMove(this, x, y);
                 }
 
-            } else if (id == MouseEvent.MOUSE_ENTERED
-                    || id == MouseEvent.MOUSE_MOVED) {
+            } else if (id == MouseEvent.MOUSE_ENTERED || id == MouseEvent.MOUSE_MOVED) {
 
                 // If we're in a corner set the cursor to indicate a
                 // resize, otherwise a move.
@@ -788,36 +760,29 @@ public class Wrapper extends JPanel implements Serializable,
             y = y - borderWidth;
         }
         if (evt.id == Event.MOUSE_DOWN) {
-            me = new MouseEvent(source, MouseEvent.MOUSE_PRESSED,
-                    0, 0, x, y, 0, false);
+            me = new MouseEvent(source, MouseEvent.MOUSE_PRESSED, 0, 0, x, y, 0, false);
             mousePressed(me);
         } else if (evt.id == Event.MOUSE_UP) {
             if (sawMouseDown) {
-                me = new MouseEvent(source, MouseEvent.MOUSE_CLICKED,
-                        0, 0, x, y, 0, false);
+                me = new MouseEvent(source, MouseEvent.MOUSE_CLICKED, 0, 0, x, y, 0, false);
                 mouseClicked(me);
             }
             sawMouseDown = false;
-            me = new MouseEvent(source, MouseEvent.MOUSE_RELEASED,
-                    0, 0, x, y, 0, false);
+            me = new MouseEvent(source, MouseEvent.MOUSE_RELEASED, 0, 0, x, y, 0, false);
             mouseReleased(me);
         } else if (evt.id == Event.MOUSE_MOVE) {
-            me = new MouseEvent(source, MouseEvent.MOUSE_MOVED,
-                    0, 0, x, y, 0, false);
+            me = new MouseEvent(source, MouseEvent.MOUSE_MOVED, 0, 0, x, y, 0, false);
             mouseMoved(me);
         } else if (evt.id == Event.MOUSE_ENTER) {
             sawMouseDown = false;
-            me = new MouseEvent(source, MouseEvent.MOUSE_ENTERED,
-                    0, 0, x, y, 0, false);
+            me = new MouseEvent(source, MouseEvent.MOUSE_ENTERED, 0, 0, x, y, 0, false);
             mouseEntered(me);
         } else if (evt.id == Event.MOUSE_EXIT) {
             sawMouseDown = false;
-            me = new MouseEvent(source, MouseEvent.MOUSE_EXITED,
-                    0, 0, x, y, 0, false);
+            me = new MouseEvent(source, MouseEvent.MOUSE_EXITED, 0, 0, x, y, 0, false);
             mouseExited(me);
         } else if (evt.id == Event.MOUSE_DRAG) {
-            me = new MouseEvent(source, MouseEvent.MOUSE_DRAGGED,
-                    0, 0, x, y, 0, false);
+            me = new MouseEvent(source, MouseEvent.MOUSE_DRAGGED, 0, 0, x, y, 0, false);
             mouseDragged(me);
         }
         return false;
@@ -875,13 +840,7 @@ public class Wrapper extends JPanel implements Serializable,
         // through handleEvent.  Otherwise we use the new event model and
         // register explicit listeners for mouse events.
         if (!useNewEventModel()) {
-            System.err.println("WARNING: \""
-                    + child.getClass().getName()
-                    + "\" "
-                    + "is a transitional bean.\n"
-                    + "SOME BEAN CONTAINERS MAY NOT SUPPORT"
-                    + " TRANSITIONAL BEANS!"
-            );
+            System.err.println("WARNING: \"" + child.getClass().getName() + "\" " + "is a transitional bean.\n" + "SOME BEAN CONTAINERS MAY NOT SUPPORT" + " TRANSITIONAL BEANS!");
             return;
         }
         if (enable) {

@@ -137,7 +137,7 @@ public class BeanBoxFrame extends JFrame implements LayoutManager, Runnable,
 
         // Popup a "we're starting" frame.
         Timer tim2 = new Timer();
-        Frame starter = new StartFrame();
+        JFrame starter = new StartFrame();
 
         if (showTimes()) {
             System.err.println("awt startup => " + tim2.elapsed());
