@@ -33,6 +33,7 @@ class ToolBox extends JInternalFrame {
 		setLocation(x, y);
 		setSize(pane.getPreferredSize());
 		setVisible(true);
+        setFocusCycleRoot(true);
     }
 
     Vector getLoadedJarInfo() {

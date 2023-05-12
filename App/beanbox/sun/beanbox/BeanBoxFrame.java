@@ -60,6 +60,7 @@ public class BeanBoxFrame extends JFrame implements LayoutManager, Runnable,
 
         setLayout(null);
         setBackground(Color.lightGray);
+        setResizable(true);
         setJMenuBar(new JMenuBar());
         //MenuBar(new MenuBar());
 
@@ -68,7 +69,7 @@ public class BeanBoxFrame extends JFrame implements LayoutManager, Runnable,
         setFont(new Font("Dialog", Font.PLAIN, 10));
 
         Timer tim = new Timer();
-        toolBox = new ToolBox(20, 20);
+        toolBox = new ToolBox(0, 0);
         add(toolBox);
         toolBox.setVisible(true);
         toolBox.toFront();
@@ -94,11 +95,12 @@ public class BeanBoxFrame extends JFrame implements LayoutManager, Runnable,
         topBox.setSize(100, 100);
         setLayout(this);
 
-        setBounds(170, 20, 1400, 850);
+        setBounds(0, 0, 1500, 1350);
         new WindowCloser(this, true);
         setVisible(true);
 
-        propertySheet = new PropertySheet(topWrapper, 575, 20);
+        propertySheet = new PropertySheet(topWrapper, 1500, 20);
+        propertySheet.setSize(320, 1350);
         new WindowCloser(propertySheet, true);
         //add(propertySheet);
         //propertySheet.setVisible(true);

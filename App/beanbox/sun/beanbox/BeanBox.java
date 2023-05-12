@@ -69,7 +69,7 @@ public class BeanBox extends JPanel implements Serializable, Runnable,
                 }
         );
 
-        mt.setLocation(580, 250);
+        mt.setLocation(0, 0);
         mt.setVisible(true);
         getBeanContextProxy().addPropertyChangeListener("designMode", mt);
 
