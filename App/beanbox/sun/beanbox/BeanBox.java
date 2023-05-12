@@ -139,7 +139,7 @@ public class BeanBox extends JPanel implements Serializable, Runnable,
             bar.add(m);
 
             m = new JMenu("Services"); // menu 3
-            addMenuItem(frame, m, new JMenuItem("InfoBus Support... (УДАЛИТЬ НАХУЙ)"));
+            addMenuItem(frame, m, new JMenuItem("InfoBus Support..."));
             addMenuItem(frame, m, new JMenuItem("Hide Method Tracing"));
             bar.add(m);
 
