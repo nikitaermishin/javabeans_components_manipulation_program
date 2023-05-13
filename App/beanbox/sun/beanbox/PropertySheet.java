@@ -17,6 +17,9 @@ public class PropertySheet extends JFrame {
         setLayout(null);
         setBackground(Color.lightGray);
         setBounds(x, y, 100, 1100);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setLocation(1400, 20);
+        setAlwaysOnTop(true);
 
         panel = new PropertySheetPanel(this);
 

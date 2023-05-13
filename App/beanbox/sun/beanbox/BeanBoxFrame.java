@@ -95,12 +95,12 @@ public class BeanBoxFrame extends JFrame implements LayoutManager, Runnable,
         topBox.setSize(100, 100);
         setLayout(this);
 
-        setBounds(0, 0, 1500, 1350);
+        setBounds(0, 0, 1400, 1350);
         new WindowCloser(this, true);
         setVisible(true);
 
-        propertySheet = new PropertySheet(topWrapper, 1500, 20);
-        propertySheet.setSize(320, 1350);
+        propertySheet = new PropertySheet(topWrapper, 1400, 20);
+        propertySheet.setSize(325, 1350);
         new WindowCloser(propertySheet, true);
         //add(propertySheet);
         //propertySheet.setVisible(true);
